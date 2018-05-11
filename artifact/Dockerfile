@@ -1,7 +1,7 @@
 FROM alpine
 
 RUN mkdir /app
-COPY ./artifact /app
+COPY . /app
 WORKDIR /app
 
 EXPOSE 8988

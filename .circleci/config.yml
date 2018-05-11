@@ -13,7 +13,7 @@ jobs:
 
       - run: make
 
-      - run: docker build -t dominatcorp/tgbot:$CIRCLE_BRANCH ./artifact
+      - run: docker build -t dominatcorp/tgbot:$CIRCLE_BUILD_NUM.$CIRCLE_BRANCH ./artifact
 
 workflows:
   version: 2
