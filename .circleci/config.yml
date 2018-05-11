@@ -7,13 +7,19 @@ jobs:
     working_directory: /go/src/app
     steps:
       - checkout
+
+      - run: go get -v ./...
+      - save_cache:
+        key: v1-pkg-cache
+        paths:
+          - "/go/pkg"
+
+      - run: make linux
+
       - setup_remote_docker
-
-      - run: go get -v github.com/tools/godep
-
-      - run: make
-
       - run: docker build -t dominatcorp/tgbot:$CIRCLE_BUILD_NUM.$CIRCLE_BRANCH ./artifact
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - run: docker push dominatcorp/tgbot:$CIRCLE_BUILD_NUM.$CIRCLE_BRANCH
 
 workflows:
   version: 2
