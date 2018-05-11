@@ -8,3 +8,5 @@ jobs:
     steps:
       - checkout
       - run: make
+      - store_artifacts:
+          path: /go/src/github.com/dominat-corp/tg.bot/artifact
