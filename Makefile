@@ -8,7 +8,6 @@ BUILDDIR=artifact
 all: clean pre linux
 
 pre:
-	# godep get
 	go get -v -d ./...
 	
 linux:
