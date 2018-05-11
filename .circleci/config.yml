@@ -13,8 +13,7 @@ jobs:
 
       - run: make
 
-      - run: pwd
-      - run: ls -la
+      - run: docker build -t dominatcorp/tgbot:$CIRCLE_BRANCH ./artifact
 
 workflows:
   version: 2
