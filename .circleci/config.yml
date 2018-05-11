@@ -1,4 +1,5 @@
-version: 2
+version: 2.0
+
 jobs:
   build:
     docker:
@@ -40,5 +41,5 @@ workflows:
     jobs:
       - build
       - deploy:
-        requires:
+          requires:
             - build
