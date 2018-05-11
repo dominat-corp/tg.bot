@@ -11,7 +11,7 @@ pre:
 	go get -v -d ./...
 	
 docker:
-	GOOS=linux GOARCH=${GOARCH} go build ${LDFLAGS} -o ${BUILDDIR}/${BINARY}-${BRANCH}
-
+	CGO_ENABLED=0 GOOS=linux GOARCH=${GOARCH} go build ${LDFLAGS} -a -installsuffix cgo -o ${BUILDDIR}/${BINARY}-${BRANCH}
+	
 clean:
 	rm -f ${BUILDDIR}/${BINARY}-*
