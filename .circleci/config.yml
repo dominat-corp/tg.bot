@@ -1,5 +1,4 @@
 version: 2
-
 jobs:
   build:
     docker:
@@ -21,4 +20,4 @@ workflows:
   version: 2
   conveyor:
     jobs:
-      - build:
+      - build
