@@ -21,6 +21,8 @@ jobs:
           paths:
             - "/go/pkg"
 
+      - setup_remote_docker
+
       - run: docker build -t dominatcorp/tgbot:$CIRCLE_BRANCH ./artifact
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - run: docker push dominatcorp/tgbot:$CIRCLE_BRANCH
