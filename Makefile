@@ -8,7 +8,8 @@ BUILDDIR=artifact
 all: clean pre linux
 
 pre:
-	godep get
+	# godep get
+	go get -v -d ./...
 	
 linux:
 	GOOS=linux GOARCH=${GOARCH} go build ${LDFLAGS} -o ${BUILDDIR}/${BINARY}-${BRANCH}
