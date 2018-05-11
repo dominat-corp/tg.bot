@@ -1,10 +1,5 @@
 version: 2
 
-general:
-  branches:
-    only:
-      - master
-
 jobs:
   build:
     docker:
@@ -22,34 +17,8 @@ jobs:
       - run: pwd
       - run: ls -la
 
-      # - run: docker build -t dominatcorp/tgbot:$CIRCLE_BRANCH ./artifact
-
-
-  # build_and_deploy:
-  #   docker:
-  #     - image: circleci/golang:1.10
-
-  #   working_directory: /go/src/tg.bot
-  #   steps:
-  #     - checkout
-
-  #     - run: make
-
-  #     - save_cache:
-  #         key: v1-pkg-cache
-  #         paths:
-  #           - "/go/pkg"
-
-  #     - setup_remote_docker
-
-  #     - run: docker build -t dominatcorp/tgbot:$CIRCLE_BRANCH ./artifact
-  #     - run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-  #     - run: docker push dominatcorp/tgbot:$CIRCLE_BRANCH
-
 workflows:
   version: 2
   conveyor:
     jobs:
-      # - test:
       - build:
-      # - deploy:
