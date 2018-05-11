@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: farwydi/go-build
 
-    working_directory: /go/src/github.com/{{ORG_NAME}}/{{REPO_NAME}}
+    working_directory: /go/src/github.com/dominat-corp/tg.bot
     steps:
       - checkout
       - run: make
