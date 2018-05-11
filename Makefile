@@ -5,12 +5,12 @@ LDFLAGS=-ldflags "-X main.COMMIT=${COMMIT} -X main.BRANCH=${BRANCH}"
 BINARY=tgbot
 BUILDDIR=artifact
 
-all: clean pre linux
+all: clean pre docker
 
 pre:
 	go get -v -d ./...
 	
-linux:
+docker:
 	GOOS=linux GOARCH=${GOARCH} go build ${LDFLAGS} -o ${BUILDDIR}/${BINARY}-${BRANCH}
 
 clean:
