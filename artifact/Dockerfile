@@ -1,5 +1,7 @@
 FROM alpine
 
+RUN apk add --no-cache --virtual ca-certificates
+
 RUN mkdir /app
 COPY . /app
 WORKDIR /app
