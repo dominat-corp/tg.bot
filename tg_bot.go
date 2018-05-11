@@ -19,7 +19,7 @@ func main() {
 	log.Printf("Authorized on account %s", bot.Self.UserName)
 
 	// Setting web hook https protocol
-	hook := tgbotapi.NewWebhook("https://" + os.Getenv("PROGRAM_NAME") + ".herokuapp.com/" + bot.Token)
+	hook := tgbotapi.NewWebhook(os.Getenv("HOOK_URL"))
 	_, err = bot.SetWebhook(hook)
 
 	if err != nil {
@@ -27,7 +27,7 @@ func main() {
 	}
 
 	// Set Handler for http server
-	updates := bot.ListenForWebhook("/" + bot.Token)
+	updates := bot.ListenForWebhook("/")
 
 	// Start http server on PORT
 	go http.ListenAndServe(":"+os.Getenv("PORT"), nil)
