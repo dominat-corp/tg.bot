@@ -15,8 +15,8 @@ jobs:
       - setup_remote_docker
       - run: docker build -t dominatcorp/tgbot:$CIRCLE_BUILD_NUM.$CIRCLE_BRANCH ./artifact
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - run: docker tag dominatcorp/tgbot:latest dominatcorp/tgbot:$CIRCLE_BUILD_NUM.$CIRCLE_BRANCH
       - run: docker push dominatcorp/tgbot:$CIRCLE_BUILD_NUM.$CIRCLE_BRANCH
-      - run: docker push dominatcorp/tgbot:latest
 
 workflows:
   version: 2
