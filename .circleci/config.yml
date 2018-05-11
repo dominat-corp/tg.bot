@@ -32,8 +32,8 @@ jobs:
       - run:
           command: |
             ssh root@$DEPLOY_HOST 'docker pull dominatcorp/tgbot:latest'
-            ssh root@$DEPLOY_HOST 'docker stop tgbot'
-            ssh root@$DEPLOY_HOST 'docker run --name tgbot --rm -d -p 8988:8988 --env-file ./e/tgbot dominatcorp/tgbot:latest'
+            ssh root@$DEPLOY_HOST 'docker stop tgbot >> /dev/null'
+            ssh root@$DEPLOY_HOST 'docker run --name tgbot --rm -d -p 8988:8988 --env-file /e/tgbot dominatcorp/tgbot:latest'
             
 workflows:
   version: 2
