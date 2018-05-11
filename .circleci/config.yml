@@ -1,12 +1,23 @@
 version: 2
 jobs:
-  build:
+  build_and_deploy:
     docker:
       - image: farwydi/go-build
 
     working_directory: /go/src/github.com/dominat-corp/tg.bot
     steps:
       - checkout
+
       - run: make
-      - store_artifacts:
-          path: /go/src/github.com/dominat-corp/tg.bot/artifact
+
+      - run:
+        name: Start docker build
+        command: docker build -t dominatcorp/tgbot:$CIRCLE_BRANCH /artifact
+
+      - run:
+        name: Log in to docker hub
+        command: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
+      - run:
+        name: Push docker file to docker hub
+        command: docker push dominatcorp/tgbot:$CIRCLE_BRANCH

@@ -1,5 +1,6 @@
 FROM alpine
 
+RUN mkdir /app
 COPY ./artifact /app
 WORKDIR /app
 
