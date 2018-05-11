@@ -1,23 +1,31 @@
 version: 2
+
+general:
+  branches:
+    only:
+      - master
+
 jobs:
-  build:
+  build_and_deploy:
     docker:
       - image: farwydi/go-build
 
-    working_directory: /go/src/github.com/dominat-corp/tg.bot
+    working_directory: /go/src/tg.bot
     steps:
       - checkout
 
       - run: make
 
-      - run:
-        name: Start docker build
-        command: docker build -t dominatcorp/tgbot:$CIRCLE_BRANCH /artifact
+      - run: docker build -t dominatcorp/tgbot:$CIRCLE_BRANCH /artifact
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - run: docker push dominatcorp/tgbot:$CIRCLE_BRANCH
 
-      - run:
-        name: Log in to docker hub
-        command: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-
-      - run:
-        name: Push docker file to docker hub
-        command: docker push dominatcorp/tgbot:$CIRCLE_BRANCH
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build_and_deploy:
+          filters:
+            branches:
+              only:
+                - master
