@@ -11,10 +11,6 @@ jobs:
       - run: go get -v ./...
 
       - run: make linux
-      - save_cache:
-        key: v1-pkg-cache
-        paths:
-          - "/go/pkg"
 
       - setup_remote_docker
       - run: docker build -t dominatcorp/tgbot:$CIRCLE_BUILD_NUM.$CIRCLE_BRANCH ./artifact
