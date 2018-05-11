@@ -18,8 +18,20 @@ jobs:
       - run: docker push dominatcorp/tgbot:$CIRCLE_BUILD_NUM.$CIRCLE_BRANCH
       - run: docker push dominatcorp/tgbot:latest
 
+  deploy:
+    machine: true
+    steps:
+      - add_ssh_keys:
+            fingerprints:
+              - "83:eb:b6:c8:5f:51:7c:65:6e:dc:b4:59:fe:87:1f:4f"
+
+      - run: ssh root@$DEPLOY_HOST 'docker pull dominatcorp/tgbot:latest'
+      - run: ssh root@$DEPLOY_HOST 'docker kill $(docker ps -q)'
+      - run: ssh root@$DEPLOY_HOST 'docker run -d --restart=always -p 8988:8988 dominatcorp/tgbot:latest'
+
 workflows:
   version: 2
   conveyor:
     jobs:
       - build
+      - deploy
