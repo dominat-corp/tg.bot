@@ -2,7 +2,7 @@
 
 Telegram Bot!
 
-## Deploy
+## Deploy on server with Docker
 
 * On Windows
 
