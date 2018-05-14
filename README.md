@@ -4,6 +4,8 @@ Telegram Bot!
 
 ## Deploy on server with Docker
 
+Folder with scripts: `scripts`
+
 * On Windows
 
   Install `putty` and `docker`
