@@ -21,18 +21,17 @@ func main() {
 	log.Printf("Authorized on account %s", bot.Self.UserName)
 
 	// Setting web hook https protocol
-	hook := tgbotapi.NewWebhook(os.Getenv("HOOK_URL"))
-	_, err = bot.SetWebhook(hook)
+	_, err = bot.SetWebhook(tgbotapi.NewWebhookWithCert(os.Getenv("HOOK_URL")+bot.Token, "/cert/webhook_cert.pem"))
 
 	if err != nil {
 		fmt.Printf("Problem in setting Webhook: " + err.Error())
 	}
 
 	// Set Handler for http server
-	updates := bot.ListenForWebhook("/")
+	updates := bot.ListenForWebhook("/" + +bot.Token)
 
 	// Start http server on PORT
-	go http.ListenAndServe(":"+os.Getenv("PORT"), nil)
+	go http.ListenAndServeTLS(":"+os.Getenv("PORT"), "/cert/webhook_cert.pem", "/cert/webhook_pkey.pem", nil)
 
 	// main loop get updates
 	for update := range updates {
