@@ -1,5 +1,5 @@
 GOARCH=amd64
-COMMIT=$(shell git rev-parse HEAD)
+COMMIT=$(shell git rev-parse HEAD | cut -c1-8)
 BRANCH=$(shell git rev-parse --abbrev-ref HEAD)
 LDFLAGS=-ldflags "-X main.COMMIT=${COMMIT} -X main.BRANCH=${BRANCH}"
 BINARY=tgbot
@@ -9,9 +9,9 @@ all: clean pre docker
 
 pre:
 	go get -v -d ./...
-	
+
 docker:
 	CGO_ENABLED=0 GOOS=linux GOARCH=${GOARCH} go build ${LDFLAGS} -a -installsuffix cgo -o ${BUILDDIR}/${BINARY}-${BRANCH}
-	
+
 clean:
 	rm -f ${BUILDDIR}/${BINARY}-*
