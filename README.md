@@ -4,20 +4,20 @@ Telegram Bot!
 
 ## Deploy
 
-On Windows
+* On Windows
 
-Install `putty` and `docker`
+  Install `putty` and `docker`
 
-`.\deploy.ps1 159.x.x.x root C:\Users\Username\rsa.ppk`
+  `.\deploy.ps1 159.x.x.x root C:\Users\Username\rsa.ppk`
 
-On Linux
+* On Linux
 
-Install `ssh` and `docker`
+  Install `ssh` and `docker`
 
-`./deploy.sh`
+  `./deploy.sh`
 
-On Mac
+* On Mac
 
-Install `ssh` and `docker`
+  Install `ssh` and `docker`
 
-`./deploy.sh`
+  `./deploy.sh`
