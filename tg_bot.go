@@ -28,7 +28,7 @@ func main() {
 	}
 
 	// Set Handler for http server
-	updates := bot.ListenForWebhook("/" + +bot.Token)
+	updates := bot.ListenForWebhook("/" + bot.Token)
 
 	// Start http server on PORT
 	go http.ListenAndServeTLS(":"+os.Getenv("PORT"), "/cert/webhook_cert.pem", "/cert/webhook_pkey.pem", nil)
